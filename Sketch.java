@@ -14,8 +14,8 @@ public class Sketch extends PApplet {
   PImage imgRect;
   float imgX = 150;
   float imgY = 150;
-  float imgWidth = 50;
-  float imgLength = 50;
+  float imgWidth = 100;
+  float imgLength = 100;
 
   public void settings() {
     size(800, 800);
@@ -23,6 +23,7 @@ public class Sketch extends PApplet {
 
   public void setup() {
     background(32);
+    imgRect = loadImage("360_F_459326746_Sbe7u3BYDy3rDmMk1MP9IMUkkgTHRNss.png");
   }
 
   public void draw() {
@@ -63,25 +64,36 @@ public class Sketch extends PApplet {
       imgX++;
     }
   
-  // draw the image here
+    image(imgRect, imgX, imgY, imgWidth, imgLength);
   }
 
-  // Method to draw a slimey face
+  // Method to draw a slimey face that turns upside down is a key is pressed
   private void drawSlimeyFace(float x, float y) {
-    ellipse(x, y, width/8, height/8);
-  
-    fill(255); 
-    ellipse(x - width/50, y - height/50, width/40, height/40); 
-    ellipse(x + width/50, y - height/50, width/40, height/40); 
-  
-    fill(0); 
-    ellipse(x - width/50, y - height/50, width/80, height/80);
-    ellipse(x + width/50, y - height/50, width/80, height/80); 
-  
-    fill(255, 102, 102);
-    triangle(x, y - height/80, x - width/80, y + height/80, x + width/80, y + height/80);
-  
-    arc(x, y + height/60, width/16, height/20, 0, PI); 
+    if (keyPressed) {
+
+      ellipse(x, y, width/8, height/8);
+      fill(255); 
+      ellipse(x - width/50, y + height/50, width/40, height/40); 
+      ellipse(x + width/50, y + height/50, width/40, height/40); 
+      fill(0); 
+      ellipse(x - width/50, y + height/50, width/80, height/80);
+      ellipse(x + width/50, y + height/50, width/80, height/80); 
+      fill(255, 102, 102);
+      triangle(x, y + height/80, x - width/80, y - height/80, x + width/80, y - height/80);
+      arc(x, y - height/50, width/16, height/20, PI, TWO_PI); 
+    } else {
+
+      ellipse(x, y, width/8, height/8);
+      fill(255); 
+      ellipse(x - width/50, y - height/50, width/40, height/40); 
+      ellipse(x + width/50, y - height/50, width/40, height/40); 
+      fill(0); 
+      ellipse(x - width/50, y - height/50, width/80, height/80);
+      ellipse(x + width/50, y - height/50, width/80, height/80); 
+      fill(255, 102, 102);
+      triangle(x, y - height/80, x - width/80, y + height/80, x + width/80, y + height/80);
+      arc(x, y + height/60, width/16, height/20, 0, PI); 
+    }
   }
 
   // Function to draw a small square at the mouse position when clicked
@@ -103,6 +115,12 @@ public class Sketch extends PApplet {
     }
     else if (keyCode == RIGHT) {
       rightPressed = true;
+    }
+    
+    // Condition to clear squares if 'r' key is pressed clear all the squares
+    else if (key == 'r' || key == 'R') {
+      squareX.clear();
+      squareY.clear();
     }
   }
   
