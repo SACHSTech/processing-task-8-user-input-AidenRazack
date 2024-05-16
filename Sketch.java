@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 public class Sketch extends PApplet {
 
+   /**
+   * A. Razack
+   * A program that combines the use of miltuple keyboard and mouse inputs 
+   */
+
   ArrayList<Integer> squareX = new ArrayList<Integer>(); 
   ArrayList<Integer> squareY = new ArrayList<Integer>(); 
   char lastKeyPressed;
